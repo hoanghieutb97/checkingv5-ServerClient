@@ -5,7 +5,7 @@ const path = require('path');
 async function method_checkFile(dataJSON, designPath) {
     var items = dataJSON.items;
     const files = fs.readdirSync(designPath).map(file => path.basename(file, path.extname(file)).toLocaleLowerCase());
-    // console.log('Các file trong thư mục:', dataJSON);
+    
 
 
 
@@ -31,6 +31,8 @@ async function method_checkFile(dataJSON, designPath) {
             .filter(item => item.amountFile === "1" ? !item.hasSKU : !item.hasSkuFront || !item.hasSkuBack);
     }
     let lostSheet = checkMissingSKUs(items, files);
+    console.log("co tai du file khong ---------", lostSheet.length == 0);
+    if (lostSheet.length !== 0) console.log(lostSheet);
     if (lostSheet.length == 0) return true
     return false
 }

@@ -4,7 +4,7 @@ const { KeyAndApi } = require('./../constants');
 // constants.js
 const path = require('path');
 
-const filePathToWatch = path.join(KeyAndApi.serverFile,"photoshopStatus.txt");
+const filePathToWatch = path.join(KeyAndApi.serverFile, "photoshopStatus.txt");
 
 
 
@@ -25,11 +25,11 @@ async function check_statusPTS(localIPs) {
                 return;
             }
 
-            console.log('Nội dung của file:',data);
+            console.log('Nội dung của file:', data);
             var { state, err, cardId } = JSON.parse(data);
 
 
-            const response = axios.post('http://192.168.1.194:3010/Ipclient', { ip: localIPs, state: state, err: err, cardId :cardId});
+            const response = axios.post(`${KeyAndApi.serverURL}Ipclient`, { ip: localIPs, state: state, err: err, cardId: cardId });
 
 
             // Thực hiện các hành động khác bạn muốn khi file thay đổi ở đây
@@ -40,12 +40,12 @@ async function check_statusPTS(localIPs) {
 
 async function getStatusPTS_ONE() {
     const fs = require('fs').promises;
-    console.log("filePathToWatch.................",filePathToWatch);
+    console.log("filePathToWatch.................", filePathToWatch);
     // const filePathToWatch = 'C:\\Users\\Admin\\Desktop\\ServerFile\\photoshopStatus.txt';
 
     try {
         const data = await fs.readFile(filePathToWatch, 'utf8');
-        
+
         return JSON.parse(data);
     } catch (err) {
         console.error(`Lỗi khi đọc nội dung của file: ${err}`);

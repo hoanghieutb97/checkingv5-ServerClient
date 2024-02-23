@@ -16,7 +16,7 @@ const method_runScript = require("./scriptPhotoshop/method_runScript");
 const method_downDesign = require("./scriptPhotoshop/method_downDesign");
 const check_awaitPTS = require("./scriptPhotoshop/check_awaitPTS");
 const checkStates = require("./caculatorJSON/checkStates");
-const tachState = require("./caculatorJSON/tachState");
+const fetchGLLMData = require("./downFile/fetchGLLMData");
 const { getStatusPTS_ONE, check_statusPTS } = require("./scriptPhotoshop/check_statusPTS");
 
 app.use(express.json({ limit: '50mb' }));  // Tăng giới hạn lên 50mb
@@ -51,7 +51,7 @@ async function sendIP() {
 
         const localIPs = await getLocalIP();
         console.log("lorem-------------", { ip: localIPs, state: state, err: err, cardId: cardId });
-        const response = await axios.post('http://192.168.1.194:3010/Ipclient', { ip: localIPs, state: state, err: err, cardId: cardId })
+        const response = await axios.post(`${KeyAndApi.serverURL}/Ipclient`, { ip: localIPs, state: state, err: err, cardId: cardId })
 
         console.log("res__Ipclient:", response.data); // Log phản hồi từ Server 2
     } catch (error) {
@@ -111,11 +111,13 @@ app.post('/get-ip', (req, res) => {  // lay ip cua pc hien tai
 
 
 
-app.post('/photoshopScriptTrello', async (req, res) => {
-    
+app.post('/runScriptTool', async (req, res) => {
     const dataJSON = req.body;
 
-    var statusDownFile = await method_downDesign(dataJSON, KeyAndApi, dirPath);
+    const GLLM = await fetchGLLMData();
+    if (!GLLM) return res.status(200).send('loi fetch Gllm');
+    var statusDownFile = await method_downDesign(dataJSON, GLLM);
+    // console.log("statusDownFile............",statusDownFile);
     if (statusDownFile) {
         method_runScript(dataJSON, KeyAndApi, dirPath);
         return res.status(200).send('Success chay tool oke');

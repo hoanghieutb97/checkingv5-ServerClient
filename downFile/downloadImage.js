@@ -66,7 +66,7 @@ async function downloadImage(link, name, downloadDirectory) {
     const match = link.match(/\/d\/(.+?)\//) || link.match(/id=([^&]+)/);
     if (match) {
         const fileId = match[1];
-        await downloadImageDrive(oAuth2Client, fileId, downloadDirectory, name);
+        // await downloadImageDrive(oAuth2Client, fileId, downloadDirectory, name);
     } else {
         // Your existing logic for non-Google Drive links
         try {
