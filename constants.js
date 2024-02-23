@@ -10,7 +10,7 @@ const KeyAndApi = {
     apiKey: 'eaab65cdb6b3f930891953f93327e65e',
     token: 'ATTA9890326a872fc0376b216d80d4582602fcf88703471fda6cb1b13f33b6c9702008C31C28',
     filePath:filePath,
-    serverURL: 'http://192.168.1.194:3010',
+    serverURL: 'http://192.168.1.240:3010',
     gllm: 'https://sheet.best/api/sheets/e8876c80-1778-414d-ae68-af6b9ec1289c',
     serverFile:serverFile
 };
