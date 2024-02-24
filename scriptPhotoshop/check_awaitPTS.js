@@ -4,7 +4,7 @@ function check_awaitPTS() {
     try {
         
         const photoshopPath = 'C:/Program Files/Adobe/Adobe Photoshop 2020/Photoshop.exe';
-        const scriptPath = '//192.168.1.194/photoshop script V4-ultimate/checkAwait.jsx';
+        const scriptPath = '//192.168.1.194/photoshop-script-V4-ultimate/checkAwait.jsx';
         const command = `"${photoshopPath}" "${scriptPath}"`;
          exec(command, (err) => { })
          

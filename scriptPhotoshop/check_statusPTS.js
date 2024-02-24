@@ -29,7 +29,7 @@ async function check_statusPTS(localIPs) {
             var { state, err, cardId } = JSON.parse(data);
 
 
-            const response = axios.post(`${KeyAndApi.serverURL}Ipclient`, { ip: localIPs, state: state, err: err, cardId: cardId });
+            const response = axios.post(`${KeyAndApi.serverURL}/Ipclient`, { ip: localIPs, state: state, err: err, cardId: cardId });
 
 
             // Thực hiện các hành động khác bạn muốn khi file thay đổi ở đây

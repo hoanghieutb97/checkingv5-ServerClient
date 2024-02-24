@@ -115,7 +115,10 @@ app.post('/runScriptTool', async (req, res) => {
     const dataJSON = req.body;
 
     const GLLM = await fetchGLLMData();
-    if (!GLLM) return res.status(200).send('loi fetch Gllm');
+    if (!GLLM) {
+        check_awaitPTS();
+        return res.status(200).send('loi fetch Gllm')
+    };
     var statusDownFile = await method_downDesign(dataJSON, GLLM);
     // console.log("statusDownFile............",statusDownFile);
     if (statusDownFile) {
@@ -124,6 +127,7 @@ app.post('/runScriptTool', async (req, res) => {
     }
     else {
         ///////////////////////////////// cac phan code xu ly them
+        check_awaitPTS();
         return res.status(200).send('loi khi tai file Client');
 
     }

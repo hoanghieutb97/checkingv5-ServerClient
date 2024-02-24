@@ -11,7 +11,7 @@ async function method_PTSrun(dataJSON, dirPath) {
         else {
             try {
                 const photoshopPath = 'C:\\Program Files\\Adobe\\Adobe Photoshop 2020\\Photoshop.exe';
-                const scriptPath = '\\\\192.168.1.194\\photoshop script V4-ultimate\\HomeAuto.jsx';
+                const scriptPath = '\\\\192.168.1.194\\photoshop-script-V4-ultimate\\HomeAuto.jsx';
                 const command = `"${photoshopPath}" "${scriptPath}"`;
 
                 exec(command, (err) => {  });
