@@ -4,6 +4,7 @@ const fs = require('fs');
 
 
 async function method_PTSrun(dataJSON, dirPath) {
+  
     console.log("chay pts script=======================================");
     const filePath = path.join(dirPath, 'data.json');  // Tạo đường dẫn tới file data.json trong thư mục ServerFile
     fs.writeFile(filePath, JSON.stringify(dataJSON, null, 2), (err) => {

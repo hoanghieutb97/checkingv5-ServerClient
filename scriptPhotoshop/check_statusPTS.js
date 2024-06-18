@@ -5,7 +5,7 @@ const { KeyAndApi } = require('./../constants');
 const path = require('path');
 
 const filePathToWatch = path.join(KeyAndApi.serverFile, "photoshopStatus.txt");
-
+const { exec } = require('child_process');
 
 
 async function check_statusPTS(localIPs) {
@@ -28,6 +28,20 @@ async function check_statusPTS(localIPs) {
             console.log('Nội dung của file:', data);
             var { state, err, cardId } = JSON.parse(data);
 
+            // if (err) {
+            //     exec('taskkill /F /IM photoshop.exe', (error, stdout, stderr) => {
+            //         if (error) {
+            //           console.error(`Lỗi: ${error.message}`);
+            //           return;
+            //         }
+            //         if (stderr) {
+            //           console.error(`Lỗi: ${stderr}`);
+            //           return;
+            //         }
+            //         console.log(`Tiến trình Photoshop đã được kết thúc: ${stdout}`);
+            //       });12X12 INCHES W SAWTOOTH HANGERS
+                  
+            // }
 
             const response = axios.post(`${KeyAndApi.serverURL}/Ipclient`, { ip: localIPs, state: state, err: err, cardId: cardId });
 
